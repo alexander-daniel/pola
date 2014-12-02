@@ -31,8 +31,6 @@ io.on('outgoingsafari', function(image){
 		console.log('fading out');
 		$(this).delay(60000).fadeOut(5000);
 	});
-    //$('#image').attr("src","data:image/png;base64,"+image);
-
 });
 	
 
