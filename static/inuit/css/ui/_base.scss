@@ -1,0 +1,51 @@
+.big{
+
+	font-size:100px;
+	font-family:serif;
+}
+
+.medium{
+
+	font-size:16px;
+	font-family:serif;
+}
+
+.gallery{
+position:absolute;
+top:75;
+left:0;
+color:#000;
+width:100%;
+height:auto;
+
+}
+
+.pics img{
+	height:auto;
+	max-height:190px;
+	width:100%;
+	border:1px solid #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;  
+
+}
+
+.print{
+	
+}
+
+
+
+.button{
+
+	background-color:#000;
+	color:#fff;
+}
+
+.margie{
+
+	margin-bottom:200px;
+	margin-top:5px;
+}
+
