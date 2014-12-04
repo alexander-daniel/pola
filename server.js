@@ -10,9 +10,15 @@ app.set('view engine', 'html');
 app.set('views', __dirname);
 app.use(express.static(__dirname + '/static'));
 
+app.get('/', function (req, res) {
+    res.render('index');
+});
+
 app.get('/~*', function (req, res){
     var url = req.url;
-    res.render('pola');
+    res.render('pola', {
+        title: url
+    });
 
     app.io.route('ready', function(req) {   
         req.io.join(url);

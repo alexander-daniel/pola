@@ -1,0 +1,37 @@
+<head>
+	<link rel='stylesheet' type='text/css' href='/inuit/css/style.min.css' media='screen' />
+	<script src='js/jquery-1.10.2.min.js'></script>
+</head>
+
+<body>
+	
+	<div class="text--center push--ends">
+		<h1 class="mega flush--bottom hard--bottom">Pola Pola Pola</h1>
+		<h3 style="font-weight:100;" class="push--bottom">Oatmeal and Granola</h3>
+		
+		<p>join something</p>
+		<input style="font-size: 48px" id="roomName" class="input" type='text' />
+
+	</div>
+
+
+<script>
+'use strict';
+/* jshint quotmark: false, maxlen: false */
+/* global $ */
+
+$(document).ready(function () {
+	$(window).keypress(function (e) {
+  		if (e.which === 13) {
+  			var roomName = $('#roomName').val();
+    		window.location.href = "/~" + roomName;
+  		}
+	});
+});
+</script>
+</body>
+</html>
+
+
+
+
