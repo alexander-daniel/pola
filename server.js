@@ -11,7 +11,9 @@ app.set('views', __dirname);
 app.use(express.static(__dirname + '/static'));
 
 app.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', {
+        title: 'pola pola pola'
+    });
 });
 
 app.get('/~*', function (req, res){
