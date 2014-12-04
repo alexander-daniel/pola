@@ -1,37 +1,72 @@
+/* jshint quotmark: false, maxlen: false */
+/* global io, $ */
+(function () {
+	'use strict';
 
-io = io.connect();
+	io = io.connect();
 
-// Send the ready event.
-io.emit('ready');
+	// Send the ready event.
+	io.emit('ready');
 
-io.on('connect', function(){
-	
-});
-
-// Listen for the new visitor event.
-io.on('new visitor', function() {
-    $('.log').append('<p class="medium">dis when you were here. ' + new Date().toString() +'</p>');
-});
-
-io.on('outgoing', function(image){
-    //$('.gallery').prepend($('<div class="grid__item one-fifth pics"><img src="' + image + '"/></div>'));
-	$('<div class="grid__item one-fifth pics"><img src="' + image + '"/></div>').hide().prependTo('.gallery').animate({width: 'toggle'}, function(){
-		console.log('fading out');
-		$(this).delay(1200).fadeOut(5000);
+	io.on('connect', function (){
+		
 	});
-	$('#btn_snapshot').attr("disabled", false);
-    $('#btn_snapshot').removeClass('btn--inactive');
-    $('#btn_snapshot').addClass('button');
 
-});
+	io.on('new visitor', function () {
 
-
-io.on('outgoingsafari', function(image){
-	$('<div class="grid__item one-fifth pics"><img src="data:image/png;base64,' + image + '"/></div>').hide().prependTo('.gallerysafari').animate({width: 'toggle'}, function(){
-		console.log('fading out');
-		$(this).delay(60000).fadeOut(5000);
 	});
-});
+
+	io.on('newshapshot', function(image){
+		$('<div class="grid__item one-fifth pics"><img src="data:image/png;base64,' + image + '"/></div>')
+			.hide()
+			.prependTo('.gallerysafari')
+			.animate({width: 'toggle'}, function () {
+				$(this).delay(12000).fadeOut(5000);
+			});
+	});
+
+	 $(document).ready(function () {
+	 	$('#btn2').click(function () {
+	 		snapShot();
+	 	});
+
+		$('#webcam').scriptcam({ 
+			width: 320,
+			height: 240
+		});
+
+		$('#btn_snapshot').click(function (){
+	    	$('.title_head').slideUp(1000);
+		});
+
+		window.chriddyP = function (interval) {
+			setInterval(function () {
+				snapShot();
+			}, interval);
+		};
+	});
+
+	function snapShot () { 
+		io.emit('snapshot', $.scriptcam.getFrameAsBase64());
+		$('#btn2').addClass('btn--inactive');
+		$('#btn2').removeClass('button');
+		$('#btn2').attr('disabled', true);
+		setTimeout(enableButton, 5000);
+
+		$('.hide').css({
+			top: '-500',
+			left: '-500',
+			position: 'absolute'
+		});
+	}
+
+	function enableButton (){
+		$('#btn2').removeClass('btn--inactive');
+		$('#btn2').addClass('button');
+		$('#btn2').attr('disabled', false);
+	}
+})();
+
 	
 
 

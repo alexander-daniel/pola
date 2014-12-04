@@ -2,7 +2,6 @@
 	<link rel='stylesheet' type='text/css' href='/inuit/css/style.min.css' media='screen' />
 	<script src='js/jquery-1.10.2.min.js'></script>
 	<script src='/socket.io/socket.io.js'></script>
-	<script src='js/client.js'></script>
 	<script language='JavaScript' src='//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'></script>
 	<script language='JavaScript' src='scriptcam.js'></script>
 </head>
@@ -13,8 +12,7 @@
 		<div class='grid__item one-whole text--center' style='margin-bottom:5px;'>
 			<h1 class='mega' style='margin-bottom:5px;'>{{title}}</h1>
 			<button id='btn2'
-					class='grid__item one-half text--center button btn btn--large soft--sides'  
-					onclick='snapShot()'>
+					class='grid__item one-half text--center button btn btn--large soft--sides'>
 					click
 			</button>
 		</div>
@@ -29,42 +27,8 @@
 	<img id='image'>
 	<div class='grid--full gallerysafari hard'></div>
 	<div clss='offscreen' style='z-index:-1'></div>
-
-<script>
-'use strict';
- $(document).ready(function() {
-	$('#webcam').scriptcam({ 
-		width: 320,
-		height: 240
-	});
-
-	$('#btn_snapshot').click(function(){
-    	$('.title_head').slideUp(1000);
-	});
-});
-
-function snapShot() { 
-	io.emit('incoming', $.scriptcam.getFrameAsBase64());
-	$('#btn2').addClass('btn--inactive');
-		$('#btn2').removeClass('button');
-	$('#btn2').attr('disabled', true);
-	setTimeout('enableButton()', 5000);
-
-	$('.hide').css({
-		top: '-500',
-		left: '-500',
-		position: 'absolute'
-	});
-};
-
-function enableButton(){
-	$('#btn2').removeClass('btn--inactive');
-	$('#btn2').addClass('button');
-	$('#btn2').attr('disabled', false);
-	console.log('dis');
-}
-  
-</script>
+	
+	<script src='js/client.js'></script>
 
 </body>
 </html>
